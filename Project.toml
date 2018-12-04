@@ -11,3 +11,4 @@ test = ["Test"]
 
 [deps]
 LatPhysBase = "eec5c15a-e8bd-11e8-0d23-6799ca40c963"
+PyPlot = "d330b81b-6aea-500a-939a-2ce795aea3ee"

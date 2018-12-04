@@ -40,6 +40,7 @@ pkg_env_setup:
   script:
     - ls -lh ~/.julia/dev/
     - julia -e "using Pkg; pkg\"rm BenchmarkTools\";"
+    - julia -e "using Pkg; pkg\"rm PyPlot\";"
     - julia -e "using Pkg; pkg\"rm LatPhysBase\";"
     - julia -e "using Pkg; pkg\"rm LatPhysUnitcellLibrary\";"
     - julia -e "using Pkg; pkg\"rm LatPhysLatticeConstruction\";"
@@ -78,6 +79,7 @@ pkgcl_LatPhysBase:
 pkg_env_adding:
   script:
     - julia -e "using Pkg; pkg\"add BenchmarkTools\";"
+    - julia -e "using Pkg; pkg\"add PyPlot\";"
     - julia -e "using Pkg; pkg\"dev ~/.julia/dev/LatPhysBase.jl\";"
     - julia -e "using Pkg; pkg\"dev ../LatPhysPlottingPyPlot.jl\";"
     - julia -e "using Pkg; pkg\"resolve\""
@@ -119,6 +121,7 @@ main_pkg_test:
 pkg_env_removing:
   script:
     - julia -e "using Pkg; pkg\"rm BenchmarkTools\";"
+    - julia -e "using Pkg; pkg\"rm PyPlot\";"
     - julia -e "using Pkg; pkg\"rm LatPhysBase\";"
     - julia -e "using Pkg; pkg\"rm LatPhysPlottingPyPlot\";"
     - julia -e "using Pkg; pkg\"gc\""
