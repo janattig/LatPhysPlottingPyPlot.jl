@@ -80,6 +80,7 @@ pkg_env_adding:
   script:
     - julia -e "using Pkg; pkg\"add BenchmarkTools\";"
     - julia -e "using Pkg; pkg\"add PyPlot\";"
+    - julia -e "ENV[\"PYTHON\"]=\"\", run Pkg.build(\"PyCall\")"
     - julia -e "using Pkg; pkg\"dev ~/.julia/dev/LatPhysBase.jl\";"
     - julia -e "using Pkg; pkg\"dev ../LatPhysPlottingPyPlot.jl\";"
     - julia -e "using Pkg; pkg\"resolve\""
