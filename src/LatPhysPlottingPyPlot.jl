@@ -30,6 +30,7 @@ import PyPlot.plot
 # Plotting of bonds and sites and other stuff
 include("helper_functions.jl")
 
+
 # Plotting of 2D lattices
 include("lattice_plotting_2d.jl")
 

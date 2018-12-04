@@ -64,15 +64,8 @@ function plotSite(
     # get the coordinates
     x = point(site)[1]
     y = point(site)[2]
-    # Make data of sphere
-    n = detail
-    u = range(0,stop=2*pi,length=n);
-    px = cos.(u);
-    py = sin.(u);
-    px = (px.*radius) .+ x
-    py = (py.*radius) .+ y
     # scatter the point
-    scatter([x,],[y,], color=color./255)
+    PyPlot.scatter([x,],[y,], color=color./255)
 end
 
 # PLOTTING SITES IN 3D
@@ -87,7 +80,7 @@ function plotSite(
     y = point(site)[2]
     z = point(site)[3]
     # scatter the point
-    scatter3d([x,],[y,],[z,], color=color./255)
+    PyPlot.scatter3D([x,],[y,],[z,], color=color./255)
 end
 
 
@@ -118,7 +111,7 @@ function plotBond(
     x2 = point(site_to)[1]
     y2 = point(site_to)[2]
     # plot a bond
-    plot([x1,x2], [y1,y2], color=color./255)
+    PyPlot.plot([x1,x2], [y1,y2], color=color./255)
 end
 
 # PLOTTING BONDS IN 3D
@@ -138,7 +131,7 @@ function plotBond(
     y2 = point(site_to)[2]
     z2 = point(site_to)[3]
     # plot a bond
-    plot3d([x1,x2], [y1,y2], [z1,z2], color=color./255)
+    PyPlot.plot3D([x1,x2], [y1,y2], [z1,z2], color=color./255)
 end
 
 # export the functions
