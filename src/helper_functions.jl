@@ -75,7 +75,7 @@ function plotSite(
     PyPlot.scatter([x,],[y,], color=color./255)
     # maybe annotate the label as text
     if site_labels
-        PyPlot.text(x+site_label_offset[1],y+site_label_offset[2], string(label(site)), fontsize=site_label_fontsize)
+        PyPlot.text(x+site_label_offset[1],y+site_label_offset[2], string(label(site)), fontsize=site_label_fontsize, color=color./255)
     end
 end
 
@@ -99,7 +99,7 @@ function plotSite(
     PyPlot.scatter3D([x,],[y,],[z,], color=color./255)
     # maybe annotate the label as text
     if site_labels
-        PyPlot.text3D(x+site_label_offset[1],y+site_label_offset[2],z+site_label_offset[3], string(label(site)), fontsize=site_label_fontsize)
+        PyPlot.text3D(x+site_label_offset[1],y+site_label_offset[2],z+site_label_offset[3], string(label(site)), fontsize=site_label_fontsize, color=color./255)
     end
 end
 
