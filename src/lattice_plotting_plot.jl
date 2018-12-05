@@ -2,15 +2,14 @@
 function plot(
     		lattice :: L
             ;
+            site_labels :: Bool = true,
     		site_radius :: Real = 25,
-            site_labels :: Symbol = :off,
     		bond_thickness :: Real = 8,
     		visualize_periodic :: Bool = false,
     		colorcode_sites :: Dict = Dict(),
     		colorcode_bonds :: Dict = Dict(),
             colorcode_bonds_automation :: Symbol = :off,
             colorcode_sites_automation :: Symbol = :off,
-            background_color :: Vector{Int64} = [255,255,255],
             kwargs...
         ) where {LS,D,LB,N,S<:AbstractSite{LS,D},B<:AbstractBond{LB,N},U,L<:AbstractLattice{S,B,U}}
 
@@ -59,7 +58,8 @@ function plot(
             site(lattice,from(b)),
             site(lattice,to(b)),
             bond_thickness,
-            get(colorcode_bonds, label(b), color_fallback_bond)
+            get(colorcode_bonds, label(b), color_fallback_bond);
+            kwargs...
         )
     end
 
@@ -76,14 +76,12 @@ function plot(
         plotSite(
             s,
             site_radius,
-            get(colorcode_sites, label(s), color_fallback_site)
+            get(colorcode_sites, label(s), color_fallback_site);
+            site_labels = site_labels,
+            kwargs...
         )
     end
 
-
-    ############---------------------
-    # STEP 2.3 #  TODO Plot all Labels
-    ############---------------------
 end
 
 # export the plot function

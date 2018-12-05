@@ -10,7 +10,8 @@ function plotSiteComplex(
             radius  :: Real,
             color   :: Vector{<:Integer}
             ;
-            detail  :: Int64 = 21
+            detail  :: Int64 = 21,
+            kwargs...
         ) where {L,S<:AbstractSite{L,2}}
 
     # get the coordinates
@@ -33,7 +34,8 @@ function plotSiteComplex(
             radius  :: Real,
             color   :: Vector{<:Integer}
             ;
-            detail  :: Int64 = 7
+            detail  :: Int64 = 7,
+            kwargs...
         ) where {L,S<:AbstractSite{L,3}}
 
     # get the coordinates
@@ -59,6 +61,11 @@ function plotSite(
             site    :: S,
             radius  :: Real,
             color   :: Vector{<:Integer}
+            ;
+            site_labels :: Bool = true,
+            site_label_fontsize :: Real = 12,
+            site_label_offset :: Vector{<:Real} = [0.1, 0.0],
+            kwargs...
         ) where {L,S<:AbstractSite{L,2}}
 
     # get the coordinates
@@ -66,6 +73,10 @@ function plotSite(
     y = point(site)[2]
     # scatter the point
     PyPlot.scatter([x,],[y,], color=color./255)
+    # maybe annotate the label as text
+    if site_labels
+        PyPlot.text(x+site_label_offset[1],y+site_label_offset[2], string(label(site)), fontsize=site_label_fontsize)
+    end
 end
 
 # PLOTTING SITES IN 3D
@@ -73,6 +84,11 @@ function plotSite(
             site    :: S,
             radius  :: Real,
             color   :: Vector{<:Integer}
+            ;
+            site_labels :: Bool = true,
+            site_label_fontsize :: Real = 12,
+            site_label_offset :: Vector{<:Real} = [0.1, 0.0, 0.0],
+            kwargs...
         ) where {L,S<:AbstractSite{L,3}}
 
     # get the coordinates
@@ -81,6 +97,10 @@ function plotSite(
     z = point(site)[3]
     # scatter the point
     PyPlot.scatter3D([x,],[y,],[z,], color=color./255)
+    # maybe annotate the label as text
+    if site_labels
+        PyPlot.text3D(x+site_label_offset[1],y+site_label_offset[2],z+site_label_offset[3], string(label(site)), fontsize=site_label_fontsize)
+    end
 end
 
 
@@ -102,6 +122,8 @@ function plotBond(
             site_to   :: S,
             radius    :: Real,
             color     :: Vector{<:Integer}
+            ;
+            kwargs...
         ) where {L,S<:AbstractSite{L,2}}
 
     # get the coordinates
@@ -120,6 +142,8 @@ function plotBond(
             site_to   :: S,
             radius    :: Real,
             color     :: Vector{<:Integer}
+            ;
+            kwargs...
         ) where {L,S<:AbstractSite{L,3}}
 
     # get the coordinates
