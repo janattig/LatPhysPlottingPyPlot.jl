@@ -154,7 +154,7 @@ end
 
 
 # export the functions
-export plotSite, plotSiteComplex
+export plotSite, plotSites, plotSiteComplex
 
 
 
