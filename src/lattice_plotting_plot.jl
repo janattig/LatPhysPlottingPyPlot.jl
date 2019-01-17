@@ -43,22 +43,19 @@ function plot(
     # STEP 2.1 #  Plot all Bonds
     ############---------------------
 
-    # iterate over all bonds
-    for b in bonds(lattice)
-        # check if b is skipped
-        if from(b) > to(b)
-            # skip if wrong directioin
-            continue
-        elseif N>0 && !visualize_periodic && sum([abs(w) for w in wrap(b)]) != 0
-            # skip if periodic and no periodic plotting desired
-            continue
-        end
-        # plot the bond
-        plotBond(
-            site(lattice,from(b)),
-            site(lattice,to(b)),
+    # get all bond labels
+    bond_label_list = unique!(label.(bonds(lattice)))
+    # iterate over all bond labels
+    for l in bond_label_list
+        # get all bonds to that label
+        bond_list = B[b for b in bonds(lattice) if label(b)==l && from(b)>to(b) && (!isPeriodic(b) || visualize_periodic)]
+        color     = get(colorcode_bonds, l, color_fallback_bond)
+        # plot the bonds
+        plotBonds(
+            bond_list,
+            sites(lattice),
             bond_thickness,
-            get(colorcode_bonds, label(b), color_fallback_bond);
+            color;
             kwargs...
         )
     end
@@ -70,13 +67,19 @@ function plot(
     # STEP 2.2 #  Plot all Sites
     ############---------------------
 
-    # iterate over all sites
-    for s in sites(lattice)
+    # get all site labels
+    site_label_list = unique!(label.(sites(lattice)))
+
+    # iterate over all site labels
+    for l in site_label_list
+        # get all sites to that label
+        site_list = S[s for s in sites(lattice) if label(s)==l]
+        color     = get(colorcode_sites, l, color_fallback_site)
         # plot the site
-        plotSite(
-            s,
+        plotSites(
+            site_list,
             site_radius,
-            get(colorcode_sites, label(s), color_fallback_site);
+            color;
             site_labels = site_labels,
             kwargs...
         )
