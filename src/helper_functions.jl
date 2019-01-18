@@ -119,7 +119,7 @@ function plotSites(
         ) where {L,S<:AbstractSite{L,2}}
 
     # scatter the points
-    PyPlot.scatter([point(s)[1] for s in sites],[point(s)[2] for s in sites], color=color./255)
+    PyPlot.scatter([point(s)[1] for s in sites],[point(s)[2] for s in sites], color=color./255, zorder=10)
     # maybe annotate the label as text
     if site_labels
         for site in sites
