@@ -23,8 +23,8 @@ function plotLattice(
     ax[:set_aspect]("equal")
     # tighten layout
     tight_layout()
-    # show
-    show()
+    # returns the figure
+    return fig
 end
 
 # export plotting function
