@@ -14,8 +14,9 @@ Provides the plotting in PyPlot for [`LatticePhysics.jl`](https://github.com/jan
 
 ## Installation
 
-For usage purposes only, you can install the package via the package mode in Julia (Pkg). However, since the package
-is not listed in the Julia package repositories, you have to use
+You can install the package via the package mode in Julia (Pkg). However, since the package
+is not listed in the Julia package repositories, you have to first install the unregistered
+dependencies manually. To do so, first install [`LatticePhysics.jl`](https://github.com/janattig/LatticePhysics.jl) as specified on its Readme file. Then install the main package with
 ```julia
 (v1.0) pkg> add "https://github.com/janattig/LatPhysPlottingPyPlot.jl"
 ```
