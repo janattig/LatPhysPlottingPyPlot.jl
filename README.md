@@ -1,43 +1,21 @@
-# LatPhysPlottingPyPlot.jl [![pipeline status](http://gitsrv.thp.uni-koeln.de/attig/LatPhysPlottingPyPlot.jl/badges/master/pipeline.svg)](http://gitsrv.thp.uni-koeln.de/attig/LatPhysPlottingPyPlot.jl/commits/master) [![coverage report](http://gitsrv.thp.uni-koeln.de/attig/LatPhysPlottingPyPlot.jl/badges/master/coverage.svg)](http://gitsrv.thp.uni-koeln.de/attig/LatPhysPlottingPyPlot.jl/commits/master)
+# LatPhysPlottingPyPlot.jl
+
+Lattice plotting for the main module [`LatticePhysics.jl`](https://github.com/janattig/LatticePhysics.jl).
 
 
 
 ## Contents
 
-Provides the plotting in PyPlot for [`LatticePhysics.jl`](http://gitsrv.thp.uni-koeln.de/attig/LatticePhysics.jl).
+Provides the plotting in PyPlot for [`LatticePhysics.jl`](https://github.com/janattig/LatticePhysics.jl) for the following types:
+1.  `AbstractSite`
+2.  `AbstractBond`
+3.  `AbstractUnitcell`
 
 
-## Installation (usage only):
+## Installation
 
 For usage purposes only, you can install the package via the package mode in Julia (Pkg). However, since the package
 is not listed in the Julia package repositories, you have to use
 ```julia
-(v1.0) pkg> add "git@gitsrv.thp.uni-koeln.de:attig/LatPhysPlottingPyPlot.jl.git"
+(v1.0) pkg> add "https://github.com/janattig/LatPhysPlottingPyPlot.jl"
 ```
-Note: this can lead to Errors under Windows 10 due to incorrect SSH access. Use the following command instead:
-```julia
-(v1.0) pkg> add "http://gitsrv.thp.uni-koeln.de/attig/LatPhysPlottingPyPlot.jl.git"
-```
-You will be prompted a username and password validation but it should work the same way.
-
-
-## Installation (developement):
-
-For developement purposes, it is best to clone the package via git to a developement
-git location of your choice and use
-```julia
-(v1.0) pkg> dev "path/to/the/repository/on/your/machine"
-```
-
-Alternatively, you could use
-```julia
-(v1.0) pkg> dev "git@gitsrv.thp.uni-koeln.de:attig/LatPhysPlottingPyPlot.jl.git"
-```
-or (on Windows)
-```julia
-(v1.0) pkg> dev "http://gitsrv.thp.uni-koeln.de/attig/LatPhysPlottingPyPlot.jl.git"
-```
-to clone a development version of the package to `~/.julia/dev/`.
-
-
-Finally, develope the package as you are used to within the editor of your choice.
