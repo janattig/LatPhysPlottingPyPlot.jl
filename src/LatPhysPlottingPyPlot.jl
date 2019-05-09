@@ -29,6 +29,7 @@ import PyPlot.plot
 
 # Plotting of bonds and sites and other stuff
 include("helper_functions.jl")
+include("colorcodes.jl")
 
 # Generic plotting by overwriting PyPlot.plot function
 include("lattice_plotting_plot.jl")

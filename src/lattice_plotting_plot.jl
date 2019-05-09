@@ -2,14 +2,12 @@
 function plot(
     		lattice :: L
             ;
-            site_labels :: Bool = true,
+            site_labels :: Bool = false,
     		site_radius :: Real = 25,
     		bond_thickness :: Real = 8,
     		visualize_periodic :: Bool = false,
-    		colorcode_sites :: Dict = Dict(),
-    		colorcode_bonds :: Dict = Dict(),
-            colorcode_bonds_automation :: Symbol = :off,
-            colorcode_sites_automation :: Symbol = :off,
+    		colorcode_sites :: Union{Symbol,Dict} = Dict(),
+    		colorcode_bonds :: Union{Symbol,Dict} = Dict(),
             kwargs...
         ) where {LS,D,LB,N,S<:AbstractSite{LS,D},B<:AbstractBond{LB,N},U,L<:AbstractLattice{S,B,U}}
 
@@ -27,6 +25,18 @@ function plot(
     label_fallback_bond = getDefaultLabel(LB)
 
     # TODO automatically set dictonaries
+    if typeof(colorcode_bonds) == Symbol
+        if colorcode_bonds == :kitaev || colorcode_bonds == :Kitaev
+            colorcode_bonds = generateBondColorcodeKitaev(lattice)
+        else
+            println("colorcode :$(colorcode_bonds) could not be built, using fallback")
+            colorcode_bonds = Dict()
+        end
+    end
+    if typeof(colorcode_sites) == Symbol
+        println("colorcode :$(colorcode_sites) could not be built, using fallback")
+        colorcode_sites = Dict()
+    end
 
 	# repair color dictonaries with fallback entries
 	#colorcode_bonds[label_fallback_bond] = get(colorcode_bonds, label_fallback_bond, color_fallback_bond)
