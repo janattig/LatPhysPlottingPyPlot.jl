@@ -7,11 +7,25 @@ function plotLattice(
             kwargs...
         ) where {LS,LB,N,S<:AbstractSite{LS,2},B<:AbstractBond{LB,N},U,L<:AbstractLattice{S,B,U}}
 
+    # make a copy of the lattice
+    lattice = deepcopy(lattice)
+    # shift the new lattice to the center
+    center = sum(point.(sites(lattice))) ./ length(sites(lattice))
+    for s in sites(lattice)
+        point!(s, point(s) .- center)
+    end
+
     # create a new figure
     fig = PyPlot.figure(figsize = figsize)
 
     # plot the lattice
     plot(lattice; kwargs...)
+
+    # get the limits
+    max_value = maximum([abs(p[i]) for i in 1:2 for p in point.(sites(lattice))])
+    # set the axis limits
+    xlim(-max_value, max_value)
+    ylim(-max_value, max_value)
 
     # get the current axis
     ax = fig.gca()
@@ -23,6 +37,8 @@ function plotLattice(
     ax.set_aspect("equal")
     # tighten layout
     tight_layout()
+    # reduce the boundaries
+    fig.subplots_adjust(bottom=0, top=1, right=1, left=0)
     # returns the figure
     return fig
 end
