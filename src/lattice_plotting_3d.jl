@@ -4,6 +4,7 @@ function plotLattice(
             ;
             figsize :: Tuple{<:Real, <:Real} = (6,6),
             coordinate_system :: Bool = false,
+            new_figure :: Bool = false,
             kwargs...
         ) where {LS,LB,N,S<:AbstractSite{LS,3},B<:AbstractBond{LB,N},U,L<:AbstractLattice{S,B,U}}
 
@@ -16,7 +17,11 @@ function plotLattice(
     end
 
     # create a new figure
-    fig = PyPlot.figure(figsize = figsize)
+    if new_figure
+        fig = PyPlot.figure(figsize = figsize)
+    else
+        fig = PyPlot.gcf()
+    end
 
     # plot the lattice
     plot(lattice; kwargs...)
