@@ -28,6 +28,8 @@ function plot(
     if typeof(colorcode_bonds) == Symbol
         if colorcode_bonds == :kitaev || colorcode_bonds == :Kitaev
             colorcode_bonds = generateBondColorcodeKitaev(lattice)
+        elseif colorcode_bonds == :random || colorcode_bonds == :Random
+            colorcode_bonds = generateBondColorcodeRandom(lattice)
         else
             println("colorcode :$(colorcode_bonds) could not be built, using fallback")
             colorcode_bonds = Dict()
