@@ -235,7 +235,7 @@ function plotBonds(
         push!(lines, Tuple{Float64,Float64}[(x1,y1), (x2,y2)])
     end
     # make the collection
-    line_collection = matplotlib.collections.LineCollection(lines,colors=[color./255 for i in 1:length(lines)])
+    line_collection = matplotlib.collections.LineCollection(lines,colors=[color./255 for i in 1:length(lines)], label="$(label(bonds[1]))")
     # plot a bond
     PyPlot.gca().add_collection(line_collection)
 end
