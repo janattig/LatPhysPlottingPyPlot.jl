@@ -223,17 +223,10 @@ function plotBonds(
         ) where {LS,S<:AbstractSite{LS,2},N,LB,B<:AbstractBond{LB,N}}
 
     # make a list of all lines
-    lines = Vector{Tuple{Float64,Float64}}[]
-    for b in bonds
-        # get the coordinates to where the bond is pointing
-        x1 = point(sites[from(b)])[1]
-        y1 = point(sites[from(b)])[2]
-        # get the coordinates to where the bond is pointing
-        x2 = point(sites[to(b)])[1]
-        y2 = point(sites[to(b)])[2]
-        # push a new entry into the line list
-        push!(lines, Tuple{Float64,Float64}[(x1,y1), (x2,y2)])
-    end
+    lines = Vector{Tuple{Float64,Float64}}[
+        Tuple{Float64,Float64}[(point(sites[from(b)])[1],point(sites[from(b)])[2]), (point(sites[to(b)])[1],point(sites[to(b)])[2])]
+        for b in bonds
+    ]
     # make the collection
     line_collection = matplotlib.collections.LineCollection(lines,colors=[color./255 for i in 1:length(lines)], label="$(label(bonds[1]))")
     # plot a bond
